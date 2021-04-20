@@ -6,7 +6,8 @@ public class Player : MonoBehaviour
 {
 
     [SerializeField]
-    private float _speed = 3.5f;
+    private float _speed = 5.0f;
+    private float _speedMultiplier = 2.0f;
 
     [SerializeField]
     private GameObject _laserPrefab;
@@ -24,7 +25,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private bool _tripleShot = false;
-
+    
     
 
     // Start is called before the first frame update
@@ -60,42 +61,10 @@ public class Player : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         transform.Translate(new Vector3(horizontalInput, verticalInput, 0) * _speed * Time.deltaTime);
-
-        /*
-        // check if player position on the Y is > 0, then y position = 0
-        if (transform.position.y >= 2)
-        {
-            transform.position = new Vector3(transform.position.x, 2, 0);
-        }
-
-
-        if (transform.position.y <= -3.5f)
-        {
-            transform.position = new Vector3(transform.position.x, -3.5f, 0);
-        }
-        */
-        // The movement restriction of the Y axis can also be done using the Mathf.Clamp function
+                       
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 0), 0);
 
-        /*  This section will se left and right boundaries for the player
-         
-        if(transform.position.x >= 9.3f)
-        {
-            transform.position = new Vector3(9.3f, transform.position.y, 0);
-        }
-
-        if(transform.position.x < -9.3f)
-        {
-            transform.position = new Vector3(-9.3f, transform.position.y, 0);
-        }
-        */
-        // This can also be acheved usning the Mathf.Clamp method
-        //transform.position = new Vector3(Mathf.Clamp(transform.position.x, -9.3f, 9.3f), transform.position.y, 0);
-
-        
-        // This code will make the player appear on the opposite side as if wrapping if they
-        //go off screen either left or right.
-        
+                
         if (transform.position.x > 11.3f)
         {
             transform.position = new Vector3(-11.3f, transform.position.y, 0);
@@ -147,6 +116,18 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(_wait);
         _tripleShot = false;
+    }
+
+    public void PowerBoost()
+    {
+        _speed *= _speedMultiplier;
+        StartCoroutine(SpeedBoostPowerDown());
+    }
+
+    IEnumerator SpeedBoostPowerDown()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _speed /= _speedMultiplier;
     }
 
 }
