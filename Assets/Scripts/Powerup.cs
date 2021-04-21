@@ -46,8 +46,7 @@ public class Powerup : MonoBehaviour
                         player.TripleShot(_wait);
                         break;
                     case 1: //Speed
-                        Debug.Log("Speed boost");
-                        player.PowerBoost();
+                        player.SpeedBoost();
                         break;
                     case 2: //Shield
                         Debug.Log("Shield Activated");

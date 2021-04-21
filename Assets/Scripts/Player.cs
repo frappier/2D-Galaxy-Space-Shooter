@@ -23,7 +23,6 @@ public class Player : MonoBehaviour
     private int _playerLives = 3;
     private SpawnManager _spawnManager;
 
-    [SerializeField]
     private bool _tripleShot = false;
     
     
@@ -118,7 +117,7 @@ public class Player : MonoBehaviour
         _tripleShot = false;
     }
 
-    public void PowerBoost()
+    public void SpeedBoost()
     {
         _speed *= _speedMultiplier;
         StartCoroutine(SpeedBoostPowerDown());
