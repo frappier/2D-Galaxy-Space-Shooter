@@ -9,6 +9,9 @@ TagManager:
   - TripleShot
   - TripleShotPowerup
   - SpeedPowerup
+  - ShieldPowerup
+  - Shields
+  - Score_Text
   layers:
   - Default
   - TransparentFX

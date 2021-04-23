@@ -49,7 +49,7 @@ public class Powerup : MonoBehaviour
                         player.SpeedBoost();
                         break;
                     case 2: //Shield
-                        Debug.Log("Shield Activated");
+                        player.ShieldsActivation();
                         break;
                     default:
                         Debug.Log("Invalid powerupID");
